@@ -1,7 +1,7 @@
 #Make!
 
 objs = main.cpp player.cpp
-cc = g++
+cc = clang++
 obj_name = rpg
 compiler_flags = -std=c++11 -o $(obj_name)
 

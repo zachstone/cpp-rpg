@@ -2,15 +2,11 @@
 
 #include <cmath>
 
-/*Player::Player() {
-  this("default");
-}*/
-
 Player::Player(std::string name) : name(name), level(1), coins(0), x(0.0), y(0.0), speed(4) {
 }
 
 void Player::levelUp() {
-  ++(this->level);
+  ++this->level;
 }
 
 void Player::step(double x, double y) {
