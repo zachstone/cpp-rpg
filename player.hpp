@@ -1,19 +1,23 @@
+#pragma once
+
+#include "position.hpp"
+
 #include <string>
 
 class Player {
   std::string name;
   int coins, level;
-  double x, y, speed;
+  double speed;
+  Position position;
 
 public:
   Player(std::string name = "default");
 
   void levelUp();
-  void step(double x, double y);
-  void teleport(double x, double y);
+  void step(Position position);
+  void teleport(Position position);
 
   auto getLevel() -> int;
   auto getName() -> std::string;
-  auto getX() -> double;
-  auto getY() -> double;
+  auto getPosition() -> Position;
 };

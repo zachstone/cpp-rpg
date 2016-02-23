@@ -10,9 +10,9 @@ auto main() -> int {
             << player.getName()
             << std::endl;
 
-  player.step(10.0, 5.0);
-  std::cout << player.getX()
+  player.step(Position{10.0, 5.0});
+  std::cout << player.getPosition().x
             << std::endl
-            << player.getY();
+            << player.getPosition().y;
   return 0;
 }
