@@ -1,2 +1,12 @@
+#Make!
+
+objs = main.cpp player.cpp
+cc = g++
+obj_name = rpg
+compiler_flags = -std=c++11 -o $(obj_name)
+
 all:
-	g++ main.cpp player.cpp -o rpg.exe -std=c++11
+	$(cc) $(objs) $(compiler_flags)
+
+run:
+	./$(obj_name)
