@@ -1,12 +1,20 @@
 #Make!
 
-objs = main.cpp player.cpp
+objs = src/main.cpp src/player.cpp
 cc = clang++
-obj_name = rpg
-compiler_flags = -std=c++11 -o $(obj_name)
+output = build/rpg
+compiler_flags = -std=c++11 -o $(output)
 
 all:
+	mkdir build
 	$(cc) $(objs) $(compiler_flags)
 
+g++:
+	mkdir build
+	g++ $(objs) $(compiler_flags)
+
 run:
-	./$(obj_name)
+	$(obj_name)
+
+clean:
+	rm -R build
