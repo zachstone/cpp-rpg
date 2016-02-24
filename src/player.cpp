@@ -22,6 +22,14 @@ void Player::teleport(Position position) {
   this->position = position;
 }
 
+void Player::addItem(Item item) {
+  this->inventory.push_back(item);
+}
+
+auto Player::printInventory() -> std::string {
+  return this->inventory.front().getName();
+}
+
 auto Player::getLevel() -> int {
   return this->level;
 }

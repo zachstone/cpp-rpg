@@ -1,14 +1,17 @@
 #pragma once
 
-#include "position.hpp"
-
 #include <string>
+#include <vector>
+
+#include "position.hpp"
+#include "item.hpp"
 
 class Player {
   std::string name;
   int coins, level;
   double speed;
   Position position;
+  std::vector<Item> inventory;
 
 public:
   Player(std::string name = "default");
@@ -16,8 +19,10 @@ public:
   void levelUp();
   void step(Position position);
   void teleport(Position position);
+  void addItem(Item item);
 
   auto getLevel() -> int;
   auto getName() -> std::string;
   auto getPosition() -> Position;
+  auto printInventory() -> std::string;
 };
