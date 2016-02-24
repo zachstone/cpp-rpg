@@ -6,7 +6,7 @@ Player::Player(std::string name) : name(name), level(1), coins(0), position{0.0,
 }
 
 void Player::levelUp() {
-  ++(this->level);
+  ++this->level;
 }
 
 void Player::step(Position position) {
