@@ -1,2 +1,7 @@
 *.exe
 build/
+.vs
+*~
+Debug
+Release
+packages

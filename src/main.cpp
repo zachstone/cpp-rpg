@@ -1,6 +1,7 @@
 #include <iostream>
 
 #include "player.hpp"
+#include "unit.hpp"
 //#include "item.hpp"
 
 auto main() -> int {
@@ -19,5 +20,8 @@ auto main() -> int {
             << player.getPosition().y << std::endl;
 
   std::cout << player.printInventory() << std::endl;
+  auto p = rat64_t(1, 2);
+  p += 5;
+  std::cout << p.a() << " " << p.b() << std::endl;
   return 0;
 }
