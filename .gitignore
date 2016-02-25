@@ -1,6 +1,5 @@
 *.exe
 build/
-.vs
 *~
 Debug
 Release
