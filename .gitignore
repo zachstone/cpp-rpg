@@ -5,4 +5,5 @@ Debug
 Release
 packages
 *.VC.opendb
+*.sdf
 *.suo

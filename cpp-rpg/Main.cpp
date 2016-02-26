@@ -1,4 +1,5 @@
 #include <iostream>
+#include <memory>
 
 #include "SFML/Graphics.hpp"
 
@@ -6,16 +7,53 @@
 #include "Rational.hpp"
 #include "Item.hpp"
 
-auto main() -> int {
-  sf::RenderWindow window(sf::VideoMode(640, 480), "SFML works!");
+typedef void (*eventHandler_t)(const std::unique_ptr<sf::RenderWindow> &);
+typedef eventHandler_t eventHandlers_t[sf::Event::Count];
 
-  window.display();
-  return 0;
+auto renderLoop(const std::unique_ptr<sf::RenderWindow> &pWindow, const eventHandlers_t &eventHandlers) {
+	sf::CircleShape shape(100.f);
+	shape.setFillColor(sf::Color::Green);
+
+	while (pWindow->isOpen())
+	{
+		pWindow->clear();
+		pWindow->draw(shape);
+		pWindow->display();
+
+		sf::Event event;
+		while (pWindow->pollEvent(event))
+		{
+			if (eventHandlers[event.type]) {
+				eventHandlers[event.type](pWindow);
+			}
+		}
+	}
 }
 
-void cmd_output() {
-  Player player = Player();
-  Item item = Item("Magic Boots", 274, Position{ 78.3, 23.9 });
+auto registerEventHandlers(eventHandlers_t &eventHandlers) {
+	eventHandlers[sf::Event::Closed] = [](const auto &pWindow) { pWindow->close(); };
+}
+
+auto createWindow() {
+	std::unique_ptr<sf::RenderWindow> pWindow(new sf::RenderWindow(sf::VideoMode(200, 200), "SFML works!"));
+	pWindow->setFramerateLimit(60);
+	return pWindow;
+}
+
+auto main() -> int {
+	auto pWindow = createWindow();
+
+	eventHandlers_t eventHandlers = { nullptr };
+	registerEventHandlers(eventHandlers);
+
+	renderLoop(pWindow, eventHandlers);
+
+	return 0;
+}
+
+auto cmdOutput() {
+  auto player = Player();
+  auto item = Item("Magic Boots", 274, Position{ 78.3, 23.9 });
   player.levelUp();
   player.addItem(item);
 
