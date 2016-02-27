@@ -6,6 +6,7 @@
 #include "Player.hpp"
 #include "Rational.hpp"
 #include "Item.hpp"
+#include "Unit.hpp"
 
 typedef void (*eventHandler_t)(const std::unique_ptr<sf::RenderWindow> &);
 typedef eventHandler_t eventHandlers_t[sf::Event::Count];
@@ -45,7 +46,7 @@ auto main() -> int {
 
 	eventHandlers_t eventHandlers = { nullptr };
 	registerEventHandlers(eventHandlers);
-
+	
 	renderLoop(pWindow, eventHandlers);
 
 	return 0;
@@ -71,4 +72,51 @@ auto cmdOutput() {
   auto p = rat64_t(1, 2);
   p += 5;
   std::cout << p.a() << " " << p.b() << std::endl;
+
+  typedef struct { } Meter;
+  typedef struct { } Second;
+  typedef struct { } Kilogram;
+  auto u = Unit<double, std::ratio<1, 1>, Meter, std::ratio<-1, 1>, Second, std::ratio<1, 1>, Kilogram>(1);
+  auto u2 = Unit<double, std::ratio<1, 1>, Meter, std::ratio<1, 1>, Kilogram, std::ratio<-1, 1>, Second>(1);
+  auto u3 = Unit<double, std::ratio<-1, 1>, Second, std::ratio<1, 1>, Meter, std::ratio<1, 1>, Kilogram>(1);
+  auto u4 = Unit<double, std::ratio<-1, 1>, Second, std::ratio<1, 1>, Kilogram, std::ratio<1, 1>, Meter>(1);
+  auto u5 = Unit<double, std::ratio<1, 1>, Kilogram, std::ratio<-1, 1>, Second, std::ratio<1, 1>, Meter>(1);
+  auto u6 = Unit<double, std::ratio<1, 1>, Kilogram, std::ratio<1, 1>, Meter, std::ratio<-1, 1>, Second>(1);
+  // auto v = Unit<double, std::ratio<-1, 1>, Second, std::ratio<1, 1>, Meter>(2);
+  u += u;
+  u += u2;
+  u += u3;
+  u += u4;
+  u += u5;
+  u += u6;
+  u2 += u;
+  u2 += u2;
+  u2 += u3;
+  u2 += u4;
+  u2 += u5;
+  u2 += u6;
+  u3 += u;
+  u3 += u2;
+  u3 += u3;
+  u3 += u4;
+  u3 -= u5;
+  u3 += u6;
+  u4 += u;
+  u4 += u2;
+  u4 += u3;
+  u4 += u4;
+  u4 += u5;
+  u4 += u6;
+  u5 += u;
+  u5 += u2;
+  u5 += u3;
+  u5 += u4;
+  u5 += u5;
+  u5 += u6;
+  u6 += u;
+  u6 += u2;
+  u6 += u3;
+  u6 += u4;
+  u6 += u5;
+  u6 += u6;
 }

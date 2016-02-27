@@ -103,3 +103,4 @@ Rational<width> operator==(const Rational<width> &p, const Rational<width> &q) {
 }
 
 typedef Rational<64> rat64_t;
+static_assert(8 == sizeof(rat64_t), "rat64_t is not 8 bytes!");

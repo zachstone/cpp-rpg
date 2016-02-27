@@ -43,9 +43,11 @@
   </PropertyGroup>
   <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">
     <ClCompile>
-      <WarningLevel>Level3</WarningLevel>
+      <WarningLevel>EnableAllWarnings</WarningLevel>
       <Optimization>Disabled</Optimization>
       <SDLCheck>true</SDLCheck>
+      <TreatWarningAsError>true</TreatWarningAsError>
+      <DisableSpecificWarnings> 4514; 4625; 4626; 4710; 4820</DisableSpecificWarnings>
     </ClCompile>
     <Link>
       <GenerateDebugInformation>true</GenerateDebugInformation>
@@ -76,11 +78,15 @@
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="Item.hpp" />
-    <ClInclude Include="Main.h" />
     <ClInclude Include="Player.hpp" />
     <ClInclude Include="Position.hpp" />
     <ClInclude Include="Rational.hpp" />
+    <ClInclude Include="resource.h" />
+    <ClInclude Include="resource1.h" />
     <ClInclude Include="Unit.hpp" />
+  </ItemGroup>
+  <ItemGroup>
+    <ResourceCompile Include="cpp-rpg.rc" />
   </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
   <ImportGroup Label="ExtensionTargets">

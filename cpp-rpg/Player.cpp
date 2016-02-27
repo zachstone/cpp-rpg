@@ -9,35 +9,35 @@ void Player::levelUp() {
   ++this->level;
 }
 
-void Player::step(Position position) {
-  double xlen = position.x - this->position.x,
-         ylen = position.y - this->position.y,
+void Player::step(Position target) {
+  double xlen = target.x - position.x,
+         ylen = target.y - position.y,
          length = std::sqrt(std::abs(std::pow(xlen, 2) + std::pow(ylen, 2)));
 
-  this->teleport(Position{(xlen / length) * this->speed,
-                          (ylen / length) * this->speed});
+  teleport(Position{(xlen / length) * this->speed,
+					(ylen / length) * this->speed});
 }
 
-void Player::teleport(Position position) {
-  this->position = position;
+void Player::teleport(Position target) {
+  position = target;
 }
 
 void Player::addItem(Item item) {
-  this->inventory.push_back(item);
+  inventory.push_back(item);
 }
 
 auto Player::printInventory() -> std::string {
-  return this->inventory.front().getName();
+  return inventory.front().getName();
 }
 
 auto Player::getLevel() -> int {
-  return this->level;
+  return level;
 }
 
 auto Player::getName() -> std::string {
-  return this->name;
+  return name;
 }
 
 auto Player::getPosition() -> Position {
-  return this->position;
+  return position;
 }
